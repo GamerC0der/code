@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>REAL-TIME RAY TRACING</title>
+</head>
+<body>
+    <div style="width: 100%; overflow: hidden;" id="game-border">
+        <div style="width: 100%; height: 100%; background-color: #1a1c2c; cursor: pointer; text-align: center; color: white; display: flex; justify-content: center; align-items: center;" id="game-cover">
+            <div style="width: 100%; height: 100%; opacity: .2;">
+                <img width="100%" height="100%" class="pixelated" src="https://tic80.com/cart/da69a53a67b2e3baa01fb06ee3418609/cover.gif">
+            </div>
+            <div style="font-size: 34px; position: absolute;">- CLICK TO PLAY -</div>
+        </div>
+        <canvas style="width: 100%; height: 100%; image-rendering: pixelated; display: none;" id="canvas" oncontextmenu="event.preventDefault()" onmousedown="window.focus()"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var Module = 
+        {
+            canvas: document.getElementById('canvas'),
+            arguments:['https://tic80.com/cart/13dacc4d8b359a393f9e87bc9b514f42/fps80.tic']
+        }
+
+        function resize()
+        {
+            let gameBorder = document.getElementById('game-border');
+            gameBorder.style.height = gameBorder.clientWidth * 144 / 256 + 'px';
+        }
+
+        resize();
+
+        document.getElementById('game-cover').addEventListener('click', function()
+        {
+            document.getElementById('canvas').style.display = 'block'
+
+            let scriptTag = document.createElement('script'),
+            firstScriptTag = document.getElementsByTagName('script')[0];
+
+            scriptTag.src = 'https://tic80.com/js/1.1.2837/tic80.js?1.1.2837';
+            firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag);
+
+            this.remove();
+        })
+
+        window.addEventListener('resize', resize);
+    </script>
+</body>
+</html>
